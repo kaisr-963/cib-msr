@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f1f5f9;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.header {
+    background: linear-gradient(135deg, #1a5ca8, #0d3b6e);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.header-logo {
+    width: 120px;
+    filter: brightness(10);
+}
+
+.header-welcome {
+    color: rgba(255,255,255,0.8);
+    margin-top: 10px;
+}
+
+.banner-section {
+    padding: 15px;
+}
+
+.banner-img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.section-title {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cards-area {
+    padding: 0 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.card-img-wrap {
+    width: 70px;
+    height: 70px;
+    background: #eff6ff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-wrap img {
+    width: 55px;
+}
+
+.card-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-desc {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.watch-section {
+    display: none;
+    padding: 20px;
+}
+
+.watch-section.active {
+    display: block;
+}
+
+.watch-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.watches-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.watch-item {
+    background: #f8fafc;
+    border-radius: 50%;
+    padding: 15px;
+    border: 3px solid #e2e8f0;
+    cursor: pointer;
+}
+
+.watch-item img {
+    width: 100%;
+}
+
+.done-section {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.done-section.active {
+    display: block;
+}
+
+.done-icon {
+    font-size: 50px;
+    color: green;
+    margin-bottom: 15px;
+}
+
+.done-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.done-sub {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.security-note {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.contact-bar {
+    background: #0891b2;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.contact-bar a {
+    color: white;
+    font-weight: bold;
+}
+
+.bottom-nav {
+    background: #0d3b6e;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.nav-item {
+    font-size: 12px;
+}

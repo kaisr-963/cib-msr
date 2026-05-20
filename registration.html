@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration</title>
+
+    <link rel="stylesheet" href="registration.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <div class="header">
+
+        <img src="assets/logo.webp" class="header-logo">
+
+        <h1 class="header-title">
+            تسجيل البيانات
+        </h1>
+
+        <p class="header-subtitle">
+            يرجى إدخال البيانات للمتابعة
+        </p>
+
+    </div>
+
+    <div class="form-section">
+
+        <form id="regForm">
+
+            <div class="input-group">
+
+                <label class="input-label">
+                    الاسم الكامل
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    class="input-field"
+                    placeholder="أدخل الاسم الكامل"
+                >
+
+                <div class="field-error" id="nameError"></div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label class="input-label">
+                    الرقم القومي
+                </label>
+
+                <input
+                    type="tel"
+                    id="idNumber"
+                    class="input-field"
+                    maxlength="14"
+                    placeholder="ادخل الرقم القومي "
+                >
+
+                <div class="field-error" id="idError"></div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label class="input-label">
+                    رقم الهاتف
+                </label>
+
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    class="input-field"
+                    maxlength="11"
+                    placeholder="01xxxxxxxxx"
+                >
+
+                <div class="field-error" id="phoneError"></div>
+
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                متابعة
+            </button>
+
+        </form>
+
+        <div class="security-note">
+        بياناتك محمية بتشفير 256-bit SSL
+        </div>
+
+    </div>
+
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+
+    <div class="loader-card">
+
+        <div class="spinner"></div>
+
+        <h3>
+            جاري المعالجة
+        </h3>
+
+    </div>
+
+</div>
+
+<script type="module" src="registration.js"></script>
+
+</body>
+</html>

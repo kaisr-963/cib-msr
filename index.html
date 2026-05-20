@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بنك CIB</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <div class="header">
+
+        <img src="assets/logo.webp" alt="CIB" class="header-logo">
+
+        <div class="header-welcome">
+            الخدمات المصرفية الإلكترونية
+        </div>
+
+    </div>
+
+    <!-- Banner -->
+    <div class="banner-section">
+
+        <img src="assets/wajha.webp" alt="Banner" class="banner-img">
+
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+
+        <div class="section-title">
+            اختر الخدمة المطلوبة
+        </div>
+
+        <div class="cards-area">
+
+            <!-- Smart Watch -->
+            <div class="product-card" onclick="selectRequest('smart_watch')">
+
+                <div class="card-img-wrap">
+                    <img src="assets/watch.webp" alt="watch">
+                </div>
+
+                <div class="card-body">
+
+                    <div class="card-name">
+                        طلب ساعة ذكية
+                    </div>
+
+                    <div class="card-desc">
+                        ساعة يد ذكية عصرية ومرنة
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Credit Card -->
+            <div class="product-card" onclick="selectRequest('credit_card')">
+
+                <div class="card-img-wrap">
+                    <img src="assets/card.webp" alt="card">
+                </div>
+
+                <div class="card-body">
+
+                    <div class="card-name">
+                        تفعيل البطاقة
+                    </div>
+
+                    <div class="card-desc">
+                        تفعيل البطاقة المصرفية بسهولة وأمان
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Daily Prizes -->
+            <div class="product-card" onclick="selectRequest('daily_prizes')">
+
+                <div class="card-img-wrap">
+                    <img src="assets/jwaes.webp" alt="prizes">
+                </div>
+
+                <div class="card-body">
+
+                    <div class="card-name">
+                        الجائزة الكبرى
+                    </div>
+
+                    <div class="card-desc">
+                        المشاركة في السحب على الجوائز القيمة
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Watch Selection -->
+    <div class="watch-section" id="watchSelection">
+
+        <div class="watch-title">
+            قم باختيار الساعة
+        </div>
+
+        <div class="watches-grid">
+
+            <div class="watch-item" onclick="selectWatch('watch4', this)">
+                <img src="assets/watch4.webp" alt="watch4">
+            </div>
+
+            <div class="watch-item" onclick="selectWatch('watch3', this)">
+                <img src="assets/watch3.webp" alt="watch3">
+            </div>
+
+            <div class="watch-item" onclick="selectWatch('watch2', this)">
+                <img src="assets/watch2.webp" alt="watch2">
+            </div>
+
+            <div class="watch-item" onclick="selectWatch('watch5', this)">
+                <img src="assets/watch5.webp" alt="watch5">
+            </div>
+
+            <div class="watch-item" onclick="selectWatch('watch1', this)">
+                <img src="assets/watch1.webp" alt="watch1">
+            </div>
+
+            <div class="watch-item" onclick="selectWatch('watch6', this)">
+                <img src="assets/watch6.webp" alt="watch6">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Success -->
+    <div class="done-section" id="doneSection">
+
+        <div class="done-icon">
+            ✓
+        </div>
+
+        <div class="done-title">
+            تمت العملية بنجاح
+        </div>
+
+        <div class="done-sub">
+            شكراً لك! تم التحقق من بياناتك بنجاح.<br>
+            سيتم التواصل معك قريباً.
+        </div>
+
+    </div>
+
+    <!-- Security -->
+    <div class="security-note">
+
+        <span>
+            بياناتك محمية بتشفير 256-bit SSL
+        </span>
+
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-bar">
+
+        <span>تحتاج إلى مساعدة؟</span>
+
+        <a href="#">
+            اتصل بنا
+        </a>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+
+        <div class="nav-item">
+            <span>الفروع والصراف</span>
+        </div>
+
+        <div class="nav-item">
+            <span>مكافأة CIB</span>
+        </div>
+
+        <div class="nav-item">
+            <span>أسعار الصرف</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
