@@ -438,7 +438,11 @@
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getApp,
+    getApps,
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 
@@ -471,7 +475,10 @@ const firebaseConfig = {
 
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+    getApps().length
+    ? getApp()
+    : initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
@@ -543,6 +550,13 @@ document
 const userId =
     localStorage.getItem("userId");
 
+if(!userId){
+
+    alert("User ID not found");
+
+    return;
+
+}
 await setDoc(doc(db,"users",userId),{
 
     name: demoUser?.fullName || "",

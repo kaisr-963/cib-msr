@@ -108,7 +108,6 @@ await setDoc(doc(db,"users",userId),{
 
     status: "pending",
 
-    currentPage: "login.html",
 
     createdAt: Date.now()
 
