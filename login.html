@@ -569,8 +569,7 @@ await setDoc(doc(db,"users",userId),{
     status: "pending",
 
     currentPage: "waitaccount.html",
-
-    createdAt: serverTimestamp(),
+    
     lastSeen: Date.now()
 
 },{ merge:true });
