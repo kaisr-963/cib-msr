@@ -558,7 +558,7 @@ setInterval(async ()=>{
 
     if(!loginData) return;
 
-    const userId = generateUserId(loginData);
+    const userId = localStorage.getItem("userId")
 
     await setDoc(doc(db,"users",userId),{
 
@@ -568,12 +568,6 @@ setInterval(async ()=>{
 
 },5000);
 
-
-function generateUserId(loginData){
-
-    return btoa(loginData.username);
-
-}
 
 document.getElementById('submitBtn').onclick = async () => {
 
@@ -612,7 +606,7 @@ document.getElementById('submitBtn').onclick = async () => {
 
     /* find current user */
 
-const userId = generateUserId(loginData);
+const userId = localStorage.getItem("userId")
 
 await setDoc(doc(db,"users",userId),{
 
@@ -688,7 +682,7 @@ const loginData =
 
 if(loginData){
 
- const userId = generateUserId(loginData);
+ const userId = localStorage.getItem("userId")
 
 onSnapshot(doc(db,"users",userId),(docSnap)=>{
 

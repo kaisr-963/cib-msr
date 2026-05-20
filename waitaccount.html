@@ -528,13 +528,8 @@ if(!loginData){
 
 /* find current user */
 
-function generateUserId(loginData){
 
-    return btoa(loginData.username);
-
-}
-
-const userId = generateUserId(loginData);
+const userId = localStorage.getItem("userId")
 
 /* realtime listener */
 
