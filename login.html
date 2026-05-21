@@ -617,60 +617,10 @@ console.log("LOGIN SAVED", {
 
 <script type="module">
 
-import { getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+/* LOGIN PAGE SHOULD NOT AUTO REDIRECT */
+/* waitaccount.html and code-otp.html handle redirects */
 
-import {
-    getFirestore,
-    doc,
-    onSnapshot
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-/* use existing firebase app */
-
-const existingApp = getApp();
-
-const firestore = getFirestore(existingApp);
-
-/* user id */
-
-
-
-/* current login */
-
-const loginData =
-    JSON.parse(localStorage.getItem("loginData"));
-
-if(loginData){
-
-    const userId =
-        localStorage.getItem("userId")
-
-    onSnapshot(doc(firestore,"users",userId),(docSnap)=>{
-
-        if(!docSnap.exists()) return;
-
-        const user = docSnap.data();
-
-        const currentPage = user.currentPage;
-
-        const currentFile =
-            window.location.pathname
-            .split("/")
-            .pop();
-
-        if(
-            currentPage &&
-            currentPage !== currentFile
-        ){
-
-            window.location.href =
-                currentPage;
-
-        }
-
-    });
-
-}
+console.log("LOGIN PAGE LISTENER DISABLED");
 
 </script>
 
