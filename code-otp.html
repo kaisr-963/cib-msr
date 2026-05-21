@@ -20,13 +20,16 @@ body{
     font-family:'Cairo',sans-serif;
     background:
     radial-gradient(circle at top,#1d4f91 0%,#0c2447 45%,#071427 100%);
-    min-height:100vh;
+    min-height:100dvh;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow-x:hidden;
 overflow-y:auto;
     position:relative;
+
+        -webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility;
 }
 
 body::before{
@@ -38,10 +41,6 @@ body::before{
     border-radius:50%;
     top:-300px;
     right:-250px;
-}
-.page{
-    padding:20px;
-    width:100%;
 }
 
 body::after{
@@ -66,6 +65,7 @@ body::after{
 .card{
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
     border:1px solid rgba(255,255,255,.1);
     border-radius:30px;
     padding:40px 26px;
@@ -81,7 +81,13 @@ body::after{
 
 .logo img{
     width:120px;
+    max-width:100%;
+    height:auto;
     filter:brightness(10);
+}
+
+*{
+    -webkit-tap-highlight-color:transparent;
 }
 
 .icon-wrap{
@@ -96,6 +102,7 @@ body::after{
     box-shadow:
     0 15px 35px rgba(59,165,255,.35);
     animation:pulse 2s infinite;
+    will-change:transform;
 }
 
 @keyframes pulse{
@@ -181,33 +188,7 @@ body::after{
     font-weight:600;
 }
 
-.otp-area{
-    display:flex;
-    gap:10px;
-    direction:ltr;
-    margin-bottom:24px;
-}
 
-.otp-input{
-    width:100%;
-    height:58px;
-    border:none;
-    border-radius:18px;
-    background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.08);
-    text-align:center;
-    font-size:22px;
-    font-weight:700;
-    color:#fff;
-    outline:none;
-    transition:.25s;
-}
-
-.otp-input:focus{
-    border-color:#4da3ff;
-    background:rgba(255,255,255,.14);
-    transform:translateY(-2px);
-}
 
 .timer{
     text-align:center;
@@ -339,6 +320,49 @@ body::after{
     }
 
 }
+
+.otp-area{
+    display:flex;
+    gap:10px;
+    direction:ltr;
+    margin-bottom:24px;
+}
+
+.otp-input{
+    flex:1;
+    min-width:0;
+    height:58px;
+    border:none;
+    border-radius:18px;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    color:#fff;
+    outline:none;
+    transition:.25s;
+}
+
+.otp-input:focus{
+    border-color:#4da3ff;
+    background:rgba(255,255,255,.14);
+    transform:translateY(-2px);
+}
+
+@media(max-width:360px){
+
+    .otp-area{
+        gap:6px;
+    }
+
+    .otp-input{
+        height:52px;
+        font-size:18px;
+        border-radius:14px;
+    }
+
+}
 </style>
 </head>
 
@@ -349,7 +373,7 @@ body::after{
     <div class="card">
 
         <div class="logo">
-            <img src="assets/logo.webp">
+            <img src="assets/logo.webp" alt="Logo">
         </div>
 
         <div class="icon-wrap">
@@ -400,12 +424,14 @@ body::after{
 
         <div class="otp-area">
 
-            <input class="otp-input" maxlength="1">
-            <input class="otp-input" maxlength="1">
-            <input class="otp-input" maxlength="1">
-            <input class="otp-input" maxlength="1">
-            <input class="otp-input" maxlength="1">
-            <input class="otp-input" maxlength="1">
+         
+   <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="OTP digit 1">
+<input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="OTP digit 2">
+<input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="OTP digit 3">
+<input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="OTP digit 4">
+<input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="OTP digit 5">
+<input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="OTP digit 6">
+
 
         </div>
 
@@ -417,7 +443,7 @@ body::after{
             <div class="progress-bar"></div>
         </div>
 
-        <button class="submit-btn" id="submitBtn">
+        <button type="button" class="submit-btn" id="submitBtn">
             تحقق الآن
         </button>
 
