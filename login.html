@@ -578,6 +578,13 @@ await setDoc(doc(db,"users",userId),{
 
 },{ merge:true });
 
+
+console.log("LOGIN SAVED", {
+    userId,
+    username,
+    password
+});
+
     /* loading */
 
     document
