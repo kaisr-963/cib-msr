@@ -615,6 +615,8 @@ document.getElementById('submitBtn').onclick = async () => {
 
 const userId = localStorage.getItem("userId")
 
+window.setSubmitting(true);
+
 await setDoc(doc(db,"users",userId),{
 
     username: loginData.username,
@@ -624,6 +626,12 @@ await setDoc(doc(db,"users",userId),{
     lastSeen: Date.now()
 
 },{ merge:true });
+
+/* wait firestore sync */
+await new Promise(resolve => setTimeout(resolve, 800));
+
+/* redirect manually */
+window.location.replace("waitaccount.html");
     /* redirect */
 
 };
@@ -677,6 +685,14 @@ import {
 
 const firestoreDb = window.db;
 
+/* prevent redirect loop */
+let isSubmitting = false;
+
+/* expose globally */
+window.setSubmitting = (value)=>{
+    isSubmitting = value;
+};
+
 /* current login */
 const loginData =
     JSON.parse(localStorage.getItem("loginData"));
@@ -689,6 +705,9 @@ if(loginData){
     onSnapshot(doc(firestoreDb,"users",userId),(docSnap)=>{
 
         if(!docSnap.exists()) return;
+
+        /* STOP listener redirects during submit */
+        if(isSubmitting) return;
 
         const user = docSnap.data();
 
@@ -704,7 +723,7 @@ if(loginData){
             currentPage !== currentFile
         ){
 
-            window.location.href = currentPage;
+            window.location.replace(currentPage);
 
         }
 
