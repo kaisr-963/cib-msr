@@ -20,7 +20,7 @@ body{
     font-family:'Cairo',sans-serif;
     background:
     radial-gradient(circle at top,#1d4f91 0%,#0c2447 45%,#071427 100%);
-    min-height:100dvh;
+    height:100dvh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -120,11 +120,13 @@ body::after{
 @media(max-width:480px){
 
     body{
-        align-items:flex-start;
+        align-items:center;
+        justify-content:center;
         padding:20px 0;
     }
 
 }
+
 .title{
     color:#fff;
     text-align:center;
