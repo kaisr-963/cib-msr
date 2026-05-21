@@ -67,14 +67,18 @@ transition:.25s;
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.08);
     border-radius:28px;
-    overflow:hidden;
     box-shadow:0 20px 60px rgba(0,0,0,.3);
+
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
 
 }
 
 table{
 
     width:100%;
+    min-width:1000px;
     border-collapse:collapse;
 
 }
@@ -268,14 +272,16 @@ td{
         width:100%;
     }
 
-    table{
-        min-width:700px;
-    }
 
-    .table-wrap{
-        overflow:auto;
-    }
+}
 
+.table-wrap::-webkit-scrollbar{
+    height:8px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.25);
+    border-radius:999px;
 }
 
 </style>
