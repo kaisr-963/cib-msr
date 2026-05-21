@@ -506,7 +506,11 @@ setInterval(()=>{
 </script>
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getApp,
+    getApps,
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 
@@ -543,7 +547,10 @@ const firebaseConfig = {
 
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+    getApps().length
+    ? getApp()
+    : initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
@@ -663,8 +670,6 @@ document
 
 <script type="module">
 
-import { getApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getFirestore,
@@ -673,7 +678,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* FIX */
-const dbase = getFirestore(getApp());
+const dbase = db;
 
 /* current login */
 
