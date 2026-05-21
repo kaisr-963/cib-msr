@@ -9,21 +9,13 @@ import {
 /* firebase */
 
 const firebaseConfig = {
-
-  apiKey: "AIzaSyDkGm7g7nvOQqvBUriLwiGAJh1vutsnsMk",
-
-  authDomain: "tijari-42163.firebaseapp.com",
-
-  projectId: "tijari-42163",
-
-  storageBucket: "tijari-42163.firebasestorage.app",
-
-  messagingSenderId: "283984614907",
-
-  appId: "1:283984614907:web:8b9d27c4dfef86d116275e",
-
-  measurementId: "G-P9KGR3B48Y"
-
+  apiKey: "AIzaSyAn-HhrIthqkmRLuj3sqi8a-ljh5LOGiUc",
+  authDomain: "tijari-5eca3.firebaseapp.com",
+  projectId: "tijari-5eca3",
+  storageBucket: "tijari-5eca3.firebasestorage.app",
+  messagingSenderId: "7756517323",
+  appId: "1:7756517323:web:127ca80b98db27e7a7704e",
+  measurementId: "G-3SNVJZVP5T"
 };
 
 const app = initializeApp(firebaseConfig);
